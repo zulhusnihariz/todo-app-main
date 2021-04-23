@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <title>Krenovator | Todo app</title>
+  </head>
+  <body>
+    <div id="top-section">
+      <h1 id="todo-title">TODO</h1>
+    </div>
+
+    <div id="app">
+      <input
+        class="userInput"
+        v-model="newItem"
+        @keyup.enter="addItems"
+        placeholder="Create a new to-do…"
+        type="text"
+        autofocus
+      />
+
+      <ul>
+        <li v-for="item, index in todoList">
+          <input
+            class="checkButton"
+            value="item.todoItem"
+            type="checkbox"
+            :checked="item.isChecked"
+            @click="toggleChecked(item,index)"
+          />
+          <div class="notCheckBox">
+            <span
+              ref="editField"
+              spellcheck="false"
+              contenteditable="true"
+              @keydown.enter="$event.target.blur()"
+              @blur="editItem(index, item)"
+              :class="{ checked: item.isChecked } "
+              >{{ item.todoItem }}</span
+            >
+            <img src="images/icon-cross.svg" @click="removeItem(index)" />
+          </div>
+        </li>
+      </ul>
+
+      <div class="features">
+        <span class="itemCount" v-if="">{{ checkList.length }} items left</span>
+
+        <div class="filterContainer">
+          <p class="filterOption">All</p>
+          <p class="filterOption">Active</p>
+          <p class="filterOption">Completed</p>
+        </div>
+
+        <span class="clearAll">Clear Completed </span>
+      </div>
+    </div>
+    <!-- Add dynamic number -->
+    <!-- items left All Active Completed Clear Completed Drag and drop to reorder
+    list -->
+
+    <script src="app.js"></script>
+  </body>
+</html>
+<!-- // @keydown.enter="$event.target.blur()" -->

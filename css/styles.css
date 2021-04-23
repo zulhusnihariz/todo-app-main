@@ -1,0 +1,158 @@
+html {
+  box-sizing: border-box;
+  font-size: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+:root {
+  /* Dark Theme */
+  --vDarkBlue: hsl(235, 21%, 11%);
+  --vDarkDesaturatedBlue: hsl(235, 24%, 19%);
+  --lgtGrayishBlue: hsl(234, 39%, 85%);
+  --lgtGrayishBlueHover: hsl(236, 33%, 92%);
+  --drkGrayishBlue: hsl(234, 11%, 52%);
+  --vDarkGrayishBlue: hsl(233, 14%, 35%);
+  --vDarkGrayishBlue: hsl(237, 14%, 26%);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* background-image: url(/images/bg-mobile-dark.jpg); */
+  background-repeat: no-repeat;
+  background-color: var(--vDarkBlue);
+  background-size: 100%;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  margin: 45px 25px;
+  padding: 0;
+}
+
+#todo-title {
+  color: white;
+  letter-spacing: 10px;
+  font-size: 2rem;
+  margin-top: 45px;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+ul {
+  padding: 0;
+  margin: 0;
+  width: 550px;
+}
+
+ul {
+  max-height: 360px;
+  height: 360px;
+  overflow-y: auto;
+}
+
+ul::-webkit-scrollbar {
+  display: none;
+}
+
+li,
+.userInput,
+.features {
+  display: flex;
+  color: var(--lgtGrayishBlue);
+  background-color: var(--vDarkDesaturatedBlue);
+  min-width: 350px;
+  min-height: 60px;
+  align-items: center;
+  border-bottom: var(--drkGrayishBlue) solid 1px;
+  padding-left: 25px;
+  font-size: 0.975rem;
+}
+
+.notCheckBox {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.notCheckBox span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+li:hover > div > img {
+  display: block;
+}
+
+.userInput {
+  border: none;
+  width: 550px;
+  margin-bottom: 25px;
+  outline: none;
+}
+
+img {
+  display: none;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.checkButton {
+  padding: 0;
+  margin: 0;
+  margin-right: 15px;
+}
+
+.checked {
+  text-decoration: line-through;
+  color: var(--drkGrayishBlue);
+}
+
+[contenteditable]:focus {
+  display: inline-block;
+  width: 80%;
+  height: 20px;
+  outline: 1px solid transparent;
+  white-space: nowrap;
+  font-weight: 300;
+}
+
+.features {
+  display: flex;
+  justify-content: space-between;
+  color: var(--drkGrayishBlue);
+  font-size: 0.8rem;
+  border: none;
+  min-height: 40px;
+}
+
+.filterContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.filterOption:focus {
+  color: #5079c9;
+}
+
+.filterOption {
+  cursor: pointer;
+}
+
+.filterOption:not(:last-child) {
+  margin-right: 10px;
+}
+
+.filterContainer:first-child {
+  margin-left: 10px;
+}
+
+.clearAll {
+  padding-right: 25px;
+}
