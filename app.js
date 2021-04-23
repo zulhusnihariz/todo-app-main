@@ -12,9 +12,6 @@ var app = new Vue({
   mounted() {
     if (localStorage.todoList) {
       this.todoList = JSON.parse(localStorage.todoList);
-      this.checkList = JSON.parse(localStorage.checkList);
-    } else {
-      JSON.parse(localStorage.checkList);
     }
   },
 
@@ -45,20 +42,15 @@ var app = new Vue({
           isChecked: false,
         });
 
-        this.checkList.push(this.newItem);
         this.newItem = "";
+
+        this.checklistUpdate;
       }
     },
 
     toggleChecked(item, index) {
       let selectedItem = this.todoList[index].todoItem;
       let itemExists = this.checkList.includes(selectedItem);
-
-      if (!this.todoList[index].isChecked) {
-        this.checkList.pop();
-      } else {
-        this.checkList.push("test");
-      }
 
       item.isChecked = !item.isChecked;
     },
@@ -71,24 +63,16 @@ var app = new Vue({
 
     removeItem(index) {
       console.log("Delete button clicked");
-      console.log(index);
-
-      // Check if item is completed, if false, remove from checkList; else, do nothing
-      if (!this.todoList[index].isChecked) {
-        this.checkList.pop();
-      } else {
-      }
 
       console.log(this.todoList.splice(index, 1)); // why this line work?
 
       console.log("Item removed");
     },
   },
-
   computed: {
     filteredList: function () {
       return this.todoList.filter((item) => {
-        return item.isChecked;
+        return !item.isChecked;
       });
     },
   },
