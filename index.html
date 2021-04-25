@@ -40,13 +40,13 @@
       />
 
       <ul>
-        <li v-for="item, index in todoList">
+        <li v-for="item, index in currentList">
+          <!-- :checked="item.isChecked"
+          value="item.todoItem" -->
           <input
-            class="checkButton"
-            value="item.todoItem"
             type="checkbox"
-            :checked="item.isChecked"
-            @click="toggleChecked(item,index)"
+            @click="toggleChecked(item)"
+            v-model="item.isChecked"
           />
           <div class="notCheckBox">
             <span
@@ -54,32 +54,45 @@
               spellcheck="false"
               contenteditable="true"
               @keydown.enter="$event.target.blur()"
-              @blur="editItem(index, item)"
-              :class="{ checked: item.isChecked } "
+              @blur="editItem(item,index)"
+              :class="{ checked: item.isChecked }"
               >{{ item.todoItem }}</span
             >
-            <img src="images/icon-cross.svg" @click="removeItem(index)" />
+
+            <img src="images/icon-cross.svg" @click="removeItem(item)" />
           </div>
         </li>
       </ul>
 
       <div class="features">
-        <span class="itemCount">{{ filteredList.length }} items left</span>
+        <span class="itemCount">{{ activeList.length }} items left</span>
 
         <div class="filterContainer">
-          <p class="filterOption">All</p>
-          <p class="filterOption">Active</p>
-          <p class="filterOption">Completed</p>
+          <a
+            class="filterOption"
+            @click="currentList = todoList"
+            :class="{active: currentList == todoList}"
+            >All</a
+          >
+          <a
+            class="filterOption"
+            @click="currentList = activeList"
+            :class="{active: currentList == activeList}"
+            >Active</a
+          >
+          <a
+            class="filterOption"
+            @click="currentList = completedList"
+            :class="{active: currentList == completedList}"
+          >
+            Completed
+          </a>
         </div>
 
-        <span class="clearAll">Clear Completed </span>
+        <span class="clearAll" @click="removeAll">Clear Completed</span>
       </div>
     </div>
-    <!-- Add dynamic number -->
-    <!-- items left All Active Completed Clear Completed Drag and drop to reorder
-    list -->
 
     <script src="app.js"></script>
   </body>
 </html>
-<!-- // @keydown.enter="$event.target.blur()" -->
